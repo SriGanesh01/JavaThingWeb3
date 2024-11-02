@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
-app.use(cors());
+app.use(cors()); // Enable CORS for all origins
 app.use(express.json()); // Middleware to parse JSON bodies
 
 const db = mysql.createConnection({
@@ -24,11 +24,10 @@ app.get('/diaries', (req, res) => {
     const sqlSelect = 'SELECT * FROM diaries';
     db.query(sqlSelect, (err, result) => {
         if (err) {
-            console.log(err);
+            console.error(err); // Use console.error for logging errors
             return res.status(500).send('Error fetching diaries');
-        } else {
-            return res.json(result);
         }
+        return res.json(result); // Return diaries as JSON
     });
 });
 
@@ -38,7 +37,7 @@ app.post('/diaries', (req, res) => {
     const sqlInsert = 'INSERT INTO diaries (title, content) VALUES (?, ?)';
     db.query(sqlInsert, [title, content], (err, result) => {
         if (err) {
-            console.log(err);
+            console.error(err); // Use console.error for logging errors
             return res.status(500).send('Error inserting diary');
         }
         return res.status(201).json({ id: result.insertId, title, content }); // Respond with the new diary entry
@@ -46,6 +45,7 @@ app.post('/diaries', (req, res) => {
 });
 
 // Start server
-app.listen(process.env.PORT, () => {
-    console.log(`Server running on port ${process.env.PORT}`); // Correct port number
+const PORT = process.env.PORT || 8081; // Default to 8081 if PORT not set
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`); // Log the running port
 });
