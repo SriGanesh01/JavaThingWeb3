@@ -13,7 +13,7 @@ function Home() {
     }, []);
 
     const fetchDiaries = () => {
-        fetch('http://localhost:8081/diaries')
+        fetch(`${import.meta.env.VITE_API_URL}/diaries`)
             .then(response => response.json())
             .then(data => setDiaries(data))
             .catch(err => setError('Failed to fetch diaries'));
@@ -23,7 +23,8 @@ function Home() {
         e.preventDefault();
         const newDiary = { title, content };
 
-        fetch('http://localhost:8081/diaries', {
+        
+        fetch(`${import.meta.env.VITE_API_URL}/diaries`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
