@@ -4,9 +4,7 @@ const cors = require('cors');
 require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
-app.use(cors({
-    origin: '*', // Allow all origins for testing; adjust as necessary for production
-}));
+app.use(cors());
 app.use(express.json()); // Middleware to parse JSON bodies
 
 const db = mysql.createConnection({
@@ -48,7 +46,6 @@ app.post('/diaries', (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 8081; // Fallback to 8081 if PORT is not set
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`); // Correct port number
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`); // Correct port number
 });
