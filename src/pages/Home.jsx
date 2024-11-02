@@ -23,7 +23,7 @@ function Home() {
         e.preventDefault();
         const newDiary = { title, content };
 
-        fetch(`${import.meta.env.VITE_API_URL}/diaries`, {
+        fetch(`${import.meta.env.VITE_API_URL}/diaries`, { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
