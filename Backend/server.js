@@ -45,7 +45,7 @@ app.post('/diaries', (req, res) => {
     });
 });
 
-// Start server on all interfaces
-app.listen(process.env.PORT, '0.0.0.0', () => { // Changed 'localhost' to '0.0.0.0'
+// Start server
+app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`); // Correct port number
 });
