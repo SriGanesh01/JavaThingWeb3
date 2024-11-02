@@ -1,48 +1,50 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import EachDiary from '../components/EachDiary';
 
 function Home() {
-    const [diaries, setDiaries] = React.useState([]);
-    const [title, setTitle] = React.useState('');
-    const [content, setContent] = React.useState('');
-    const [error, setError] = React.useState(null);
+    const [diaries, setDiaries] = useState([]);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchDiaries();
+        fetchDiaries(); // Fetch diaries on component mount
     }, []);
 
-    const fetchDiaries = () => {
-        fetch(`${import.meta.env.VITE_API_URL}/diaries`)
-            .then(response => response.json())
-            .then(data => setDiaries(data))
-            .catch(err => setError('Failed to fetch diaries'));
+    const fetchDiaries = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/diaries`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+            setDiaries(data);
+        } catch (err) {
+            setError('Failed to fetch diaries');
+            console.error(err);
+        }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newDiary = { title, content };
 
-        
-        fetch(`${import.meta.env.VITE_API_URL}/diaries`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newDiary),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Something went wrong');
-            }
-            return response.json();
-        })
-        .then(() => {
-            fetchDiaries(); // Fetch diaries again to get updated list
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/diaries`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newDiary),
+            });
+
+            if (!response.ok) throw new Error('Failed to add diary entry');
+            await fetchDiaries(); // Refresh the diary list
             setTitle(''); // Clear input fields
             setContent('');
-        })
-        .catch(err => setError('Failed to add diary entry'));
+        } catch (err) {
+            setError('Failed to add diary entry');
+            console.error(err);
+        }
     };
 
     return (
