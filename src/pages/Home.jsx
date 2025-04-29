@@ -82,10 +82,10 @@ function Home() {
           <EachDiary key={diary.id} title={diary.title} content={diary.content} />
         ))}
       </div>
-      <p className='text-s font-bold text-red-600 mb-1 mt-6 text-center'>By Class I1</p>
-      <p className='text-s font-bold text-red-600 mb-1 text-center'>RA2311003010493</p>
-      <p className='text-s font-bold text-red-600 mb-1 text-center'>RA2311003010494</p>
-      <p className='text-s font-bold text-red-600 mb-1 text-center'>RA2311003010496</p>
+      <p className='text-s font-bold text-purple-600 mb-1 mt-6 text-center'>By Class H1</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>RA2311003010457</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>RA2311003010461</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>RA2311003010488</p>
     </div>
   );
 }
