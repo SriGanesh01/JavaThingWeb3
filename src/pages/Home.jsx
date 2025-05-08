@@ -82,10 +82,22 @@ function Home() {
           <EachDiary key={diary.id} title={diary.title} content={diary.content} />
         ))}
       </div>
-      <p className='text-s font-bold text-purple-600 mb-1 mt-6 text-center'>By Class I1</p>
-      <p className='text-s font-bold text-purple-600 mb-1 text-center'>RA2311003010493</p>
-      <p className='text-s font-bold text-purple-600 mb-1 text-center'>RA2311003010494</p>
-      <p className='text-s font-bold text-purple-600 mb-1 text-center'>RA2311003010496</p>
+      <p className='text-s font-bold text-purple-600 mb-1 mt-6 text-center'>Dr. S Padmini</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>Mentor</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>padminis@srmist.edu.in</p>
+
+      <p className='text-s font-bold text-purple-600 mb-1 mt-6 text-center'>Kushal Peddinti</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>Team Member</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>kp3083@srmist.edu.in</p>
+
+      <p className='text-s font-bold text-purple-600 mb-1 mt-6 text-center'>Anvith Sree Ch</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>Team Member</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>ac6302@srmist.edu.in</p>
+
+      <p className='text-s font-bold text-purple-600 mb-1 mt-6 text-center'>Amrutha Varshini</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>Team Member</p>
+      <p className='text-s font-bold text-purple-600 mb-1 text-center'>pa5453@srmist.edu.in</p>
+
     </div>
   );
 }
